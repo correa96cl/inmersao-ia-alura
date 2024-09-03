@@ -1,3 +1,21 @@
+const checkbox = document.getElementById('tema-escuro');
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.id = 'tema';
+
+checkbox.addEventListener('change', () => {
+  if (checkbox.checked) {
+    link.href = 'style-oscuro.css';
+  } else {
+    link.href = 'style-claro.css';
+  }
+  document.head.appendChild(link);
+});
+
+// Carregar o estilo inicial (você pode ajustar para o tema padrão)
+link.href = 'style-claro.css';
+document.head.appendChild(link);
+
 function pesquisar() {
     // Obtém a seção HTML onde os resultados serão exibidos
     let section = document.getElementById("resultados-pesquisa");
@@ -56,3 +74,27 @@ function pesquisar() {
     // Atribui os resultados gerados à seção HTML
     section.innerHTML = resultados;
 }
+
+
+function cambiarTema(tema) {
+    const link = document.getElementById('estilo');
+    link.href = tema === 'claro' ? 'style-claro.css' : 'style-oscuro.css';
+  }
+
+  // Detectar la hora del día y cambiar el tema automáticamente (opcional)
+  const hora = new Date().getHours();
+  console.log(hora);
+  if (hora >= 14 || hora < 6) {
+    cambiarTema('oscuro');
+  }
+
+  function toggleCSS() {
+    const estilo = document.getElementById('estilo');
+    const checkbox = document.getElementById('toggleEstilo');
+  
+    if (checkbox.checked) {
+      estilo.href = "style-claro.css";
+    } else {
+      estilo.href = "style-oscuro.css";
+    }
+  }
